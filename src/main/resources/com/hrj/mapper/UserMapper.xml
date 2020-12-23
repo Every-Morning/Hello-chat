@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hrj.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hrj.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_account_num" property="userAccountNum" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_image" property="userImage" jdbcType="VARCHAR" />
+    <result column="user_image_big" property="userImageBig" jdbcType="VARCHAR" />
+    <result column="user_qrcode" property="userQrcode" jdbcType="VARCHAR" />
+    <result column="user_cid" property="userCid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_account_num, user_password, user_image, user_image_big, 
+    user_qrcode, user_cid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserAccountNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_account_num = #{userAccountNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_user
+    where userId = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hrj.pojo.User" >
+    insert into t_user (user_id, user_name, user_account_num, 
+      user_password, user_image, user_image_big, 
+      user_qrcode, user_cid)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAccountNum,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=VARCHAR}, #{userImage,jdbcType=VARCHAR}, #{userImageBig,jdbcType=VARCHAR}, 
+      #{userQrcode,jdbcType=VARCHAR}, #{userCid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrj.pojo.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userAccountNum != null" >
+        user_account_num,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userImage != null" >
+        user_image,
+      </if>
+      <if test="userImageBig != null" >
+        user_image_big,
+      </if>
+      <if test="userQrcode != null" >
+        user_qrcode,
+      </if>
+      <if test="userCid != null" >
+        user_cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccountNum != null" >
+        #{userAccountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userImage != null" >
+        #{userImage,jdbcType=VARCHAR},
+      </if>
+      <if test="userImageBig != null" >
+        #{userImageBig,jdbcType=VARCHAR},
+      </if>
+      <if test="userQrcode != null" >
+        #{userQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCid != null" >
+        #{userCid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrj.pojo.User" >
+    update t_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccountNum != null" >
+        user_account_num = #{userAccountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userImage != null" >
+        user_image = #{userImage,jdbcType=VARCHAR},
+      </if>
+      <if test="userImageBig != null" >
+        user_image_big = #{userImageBig,jdbcType=VARCHAR},
+      </if>
+      <if test="userQrcode != null" >
+        user_qrcode = #{userQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCid != null" >
+        user_cid = #{userCid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrj.pojo.User" >
+    update t_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_account_num = #{userAccountNum,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_image = #{userImage,jdbcType=VARCHAR},
+      user_image_big = #{userImageBig,jdbcType=VARCHAR},
+      user_qrcode = #{userQrcode,jdbcType=VARCHAR},
+      user_cid = #{userCid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>
